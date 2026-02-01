@@ -91,7 +91,7 @@ app.use((req, res, next) => {
     res.locals.successMsg = req.flash("success");
     // console.log(res.locals.successMsg);
     res.locals.errorMsg = req.flash("error");
-    res.locals.currUser = req.user;
+    res.locals.currUser = req.user || null;
     next();
 });
 
