@@ -84,9 +84,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUser(User.serializeUser());              //store
-passport.deserializeUser(User.deserializeUser());          //Unstore
-
 app.use((req, res, next) => {
     res.locals.successMsg = req.flash("success");
     // console.log(res.locals.successMsg);
@@ -94,6 +91,11 @@ app.use((req, res, next) => {
     res.locals.currUser = req.user || null;
     next();
 });
+
+passport.serializeUser(User.serializeUser());              //store
+passport.deserializeUser(User.deserializeUser());          //Unstore
+
+
 
 // app.get("/demouser", async (req, res) => {
 //     let fakeUser = new User({
